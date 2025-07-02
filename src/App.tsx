@@ -2,22 +2,29 @@ import { useState } from "react";
 import { config } from "./utils/config";
 import "./App.css";
 
-interface ApiResponse {
-  message: string;
-}
+type ApiResponse = { message: string };
 
 async function fetchMessage(
   apiUrl: string,
   setMessage: (msg: string) => void
 ): Promise<void> {
   try {
-    const response = await fetch(apiUrl);
+    const response = await fetch(`${apiUrl}/test/hello`, {
+      headers: {
+        "ngrok-skip-browser-warning": "69420",
+      },
+    });
+
     if (!response.ok) {
       throw new Error(`Error: ${response.status} ${response.statusText}`);
     }
 
-    const data: ApiResponse[] = await response.json();
-    setMessage(data[0]?.message ?? "No message received");
+    const data: ApiResponse = await response.json();
+    setMessage(
+      data?.message
+        ? `Connection successful! Received message: "${data?.message}"`
+        : "No message received"
+    );
   } catch (error) {
     console.error(error);
     setMessage("Error connecting to API");
