@@ -1,3 +1,5 @@
+import spriteHref from "/src/assets/icons/sprite.svg";
+
 const Icon = ({
   name,
   size = 24,
@@ -8,7 +10,7 @@ const Icon = ({
   className?: string;
 }) => (
   <svg width={size} height={size} className={className}>
-    <use href={`/src/assets/icons/sprite.svg#${name}`} />
+    <use href={`${spriteHref}#${name}`} />
   </svg>
 );
 
