@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { config } from "./utils/config";
 import "./App.css";
+import Icon from "./components/Icon/Icon";
 
 type ApiResponse = { message: string };
 
@@ -40,6 +41,7 @@ function App() {
       <button onClick={() => fetchMessage(config.apiUrl, setMessage)}>
         Click
       </button>
+      <Icon className="icon" name="icon-chat" size={24} />
       <p>{message}</p>
     </main>
   );
